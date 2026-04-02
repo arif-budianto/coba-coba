@@ -1,120 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Little Note</title>
-  <style>
-    :root {
-      --bg: #0b0d11;
-      --card: rgba(23, 27, 34, 0.8);
-      --text: #f5f7fb;
-      --muted: #94a3b8;
-      --accent: #ec4899;
-      --accent-glow: rgba(236, 72, 153, 0.15);
-      --secondary-glow: rgba(59, 130, 246, 0.1);
-      --line: rgba(255, 255, 255, 0.08);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background-color: var(--bg);
-      background-image: 
-        radial-gradient(circle at 0% 0%, var(--accent-glow) 0%, transparent 50%),
-        radial-gradient(circle at 100% 100%, var(--secondary-glow) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(15, 17, 21, 0) 0%, var(--bg) 100%);
-      color: var(--text);
-      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-      overflow-x: hidden;
-      position: relative;
-    }
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .note {
-      position: relative;
-      z-index: 2;
-      width: min(100%, 720px);
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      background: var(--card);
-      box-shadow: 
-        0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 20px 25px -5px rgba(0, 0, 0, 0.2),
-        inset 0 0 0 1px var(--line);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-    }
-    .tag, .meta {
-      font-weight: 600;
-      font-size: 0.85rem;
-      line-height: 1.4;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    h1 {
-      margin: 24px 0 12px;
-      font-size: clamp(2.5rem, 10vw, 4.5rem);
-      line-height: 1.1;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-    h1 span {
-      background: linear-gradient(to right, var(--accent), #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-style: italic;
-    }
-    .type {
-      min-height: 28px;
-      font-weight: 500;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-      color: var(--muted);
-      opacity: 0.9;
-    }
-    #typed {
-      border-right: 2px solid var(--accent);
-      padding-right: 4px;
-      animation: blink 0.8s step-end infinite;
-    }
-    .meta {
-      margin-top: 32px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      letter-spacing: 0;
-      text-transform: none;
-      font-weight: 400;
-      font-size: 0.95rem;
-    }
-    @keyframes blink{50%{border-color:transparent}}
-    @media (min-width:640px){.note{padding:40px}}
-  </style>
-</head>
-<body>
-  <div class="note">
-    <div class="tag">Mailona Yubia</div>
-    <h1>I love you <span>too</span>.</h1>
-    <div class="type"><span id="typed" aria-live="polite"></span></div>
-    <div class="meta"><span>Kayak gini dong kalau mau gombal.</span></div>
-  </div>
-  <script>
-    const text = "Still the easiest truth I know.", el = document.getElementById("typed");
-    let i = 0; (function ketik(){ if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(ketik, 70); } })();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Little Note</title>
+    <style>
+      :root {
+        --bg: #0b0d11;
+        --card: rgba(23, 27, 34, 0.8);
+        --text: #f5f7fb;
+        --muted: #94a3b8;
+        --accent: #ec4899;
+        --accent-glow: rgba(236, 72, 153, 0.15);
+        --secondary-glow: rgba(59, 130, 246, 0.1);
+        --line: rgba(255, 255, 255, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background-color: var(--bg);
+        background-image:
+          radial-gradient(
+            circle at 0% 0%,
+            var(--accent-glow) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 100% 100%,
+            var(--secondary-glow) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(15, 17, 21, 0) 0%,
+            var(--bg) 100%
+          );
+        color: var(--text);
+        font-family:
+          ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        overflow-x: hidden;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .note {
+        position: relative;
+        z-index: 2;
+        width: min(100%, 720px);
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        background: var(--card);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 20px 25px -5px rgba(0, 0, 0, 0.2),
+          inset 0 0 0 1px var(--line);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+      .tag,
+      .meta {
+        font-weight: 600;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      h1 {
+        margin: 24px 0 12px;
+        font-size: clamp(2.5rem, 10vw, 4.5rem);
+        line-height: 1.1;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      h1 span {
+        background: linear-gradient(to right, var(--accent), #f472b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-style: italic;
+      }
+      .type {
+        min-height: 28px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: var(--muted);
+        opacity: 0.9;
+      }
+      #typed {
+        border-right: 2px solid var(--accent);
+        padding-right: 4px;
+        animation: blink 0.8s step-end infinite;
+      }
+      .meta {
+        margin-top: 32px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        letter-spacing: 0;
+        text-transform: none;
+        font-weight: 400;
+        font-size: 0.95rem;
+      }
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+      @media (min-width: 640px) {
+        .note {
+          padding: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="note">
+      <div class="tag">Mailona Yubia</div>
+      <h1>I love you <span>too</span>.</h1>
+      <div class="type"><span id="typed" aria-live="polite"></span></div>
+      <div class="meta"><span>Kayak gini dong kalau mau gombal.</span></div>
+    </div>
+    <script>
+      const text = "Still the easiest truth I know.",
+        el = document.getElementById("typed");
+      let i = 0;
+      (function ketik() {
+        if (i <= text.length) {
+          el.textContent = text.slice(0, i++);
+          setTimeout(ketik, 70);
+        }
+      })();
+    </script>
+  </body>
 </html>
