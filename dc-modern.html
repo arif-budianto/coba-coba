@@ -140,6 +140,72 @@
           padding: 40px;
         }
       }
+
+      /* Digital Clock Card Styles */
+      .clock-card {
+        margin-top: 24px;
+        width: min(100%, 720px);
+        padding: 32px;
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        background: var(--card);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 20px 25px -5px rgba(0, 0, 0, 0.2),
+          inset 0 0 0 1px var(--line);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .clock-card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.2),
+          0 10px 10px -5px rgba(0, 0, 0, 0.1),
+          inset 0 0 0 1px var(--accent);
+      }
+      .clock-time {
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        font-size: clamp(3rem, 12vw, 5rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        background: linear-gradient(to right, var(--text), var(--muted));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1;
+        animation: pulse-glow 4s ease-in-out infinite;
+      }
+      .clock-label {
+        margin-top: 12px;
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      @keyframes pulse-glow {
+        0%, 100% {
+          filter: drop-shadow(0 0 0px transparent);
+          opacity: 1;
+        }
+        50% {
+          filter: drop-shadow(0 0 15px var(--accent-glow));
+          opacity: 0.9;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .clock-card, .clock-time {
+          animation: none;
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -149,6 +215,13 @@
       <div class="type"><span id="typed" aria-live="polite"></span></div>
       <div class="meta"><span>Kayak gini dong kalau mau gombal.</span></div>
     </div>
+    
+    <!-- Digital Clock Card -->
+    <div class="clock-card">
+      <div id="digital-clock" class="clock-time" aria-live="polite">00:00:00</div>
+      <div class="clock-label">Current Time</div>
+    </div>
+
     <script>
       const text = "Still the easiest truth I know.",
         el = document.getElementById("typed");
@@ -159,6 +232,18 @@
           setTimeout(ketik, 70);
         }
       })();
+
+      // Digital Clock Logic
+      function updateClock() {
+        const timeDisplay = document.getElementById("digital-clock");
+        const now = new Date();
+        const hrs = String(now.getHours()).padStart(2, '0');
+        const min = String(now.getMinutes()).padStart(2, '0');
+        const sec = String(now.getSeconds()).padStart(2, '0');
+        timeDisplay.textContent = `${hrs}:${min}:${sec}`;
+      }
+      setInterval(updateClock, 1000);
+      updateClock(); // Initial call
     </script>
   </body>
 </html>
