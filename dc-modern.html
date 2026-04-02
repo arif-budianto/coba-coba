@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Note</title>
+  <style>
+    :root{--bg:#0f1115;--card:#171b22cc;--text:#f5f7fb;--muted:#98a2b3;--accent:#d66b8d;--line:#ffffff14}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at top,rgba(214,107,141,.12),transparent 35%),#0f1115;color:var(--text);font-family:"Iowan Old Style","Palatino Linotype",serif}
+    .note{width:min(100%,720px);padding:28px;border:1px solid var(--line);border-radius:28px;background:var(--card);box-shadow:0 24px 60px rgba(0,0,0,.35);backdrop-filter:blur(18px)}
+    .tag,.meta{font:600 .82rem/1.4 "Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    h1{margin:18px 0 10px;font-size:clamp(3rem,14vw,6rem);line-height:.95;font-weight:600;letter-spacing:-.05em}
+    h1 span{color:var(--accent);font-style:italic}.type{min-height:28px;font:500 1rem/1.5 "Segoe UI",sans-serif;color:var(--muted)}
+    #typed{border-right:1px solid #ffffffa8;padding-right:6px;animation:blink .8s step-end infinite}
+    .meta{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);letter-spacing:.04em;text-transform:none}
+    @keyframes blink{50%{border-color:transparent}}
+    @media (min-width:640px){.note{padding:40px}}
+  </style>
+</head>
+<body>
+  <div class="note">
+    <div class="tag">Mailona Yubia</div>
+    <h1>I love you <span>too</span>.</h1>
+    <div class="type"><span id="typed" aria-live="polite"></span></div>
+    <div class="meta"><span>Kayak gini dong kalau mau gombal.</span></div>
+  </div>
+  <script>
+    const text = "Still the easiest truth I know.", el = document.getElementById("typed");
+    let i = 0; (function ketik(){ if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(ketik, 70); } })();
+  </script>
+</body>
+</html>
