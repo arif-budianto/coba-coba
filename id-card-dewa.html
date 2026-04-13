@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ID Card Dewa Resmi - Arif Budianto</title>
+  <style>
+    :root {
+      --bg: #090b10;
+      --surface: #11141b;
+      --surface-strong: #171c26;
+      --text: #f3f4f8;
+      --text-soft: #b8becb;
+      --accent: #d9b36c;
+      --accent-soft: #8a6f42;
+      --line: #2a3140;
+      --danger: #6e1f27;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(circle at top, #141a25 0%, var(--bg) 58%);
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .card {
+      width: min(420px, 100%);
+      background: linear-gradient(180deg, var(--surface-strong), var(--surface));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+      position: relative;
+    }
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      opacity: 0.08;
+    }
+
+    .card::before {
+      width: 180px;
+      height: 180px;
+      top: -90px;
+      right: -70px;
+      background: var(--accent);
+    }
+
+    .card::after {
+      width: 160px;
+      height: 160px;
+      bottom: -90px;
+      left: -60px;
+      background: #ffffff;
+    }
+
+    .topbar {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid rgba(42, 49, 64, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .authority {
+      font-size: 11px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .seal {
+      border: 1px solid var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      background: rgba(217, 179, 108, 0.06);
+      white-space: nowrap;
+    }
+
+    .content {
+      padding: 22px 20px 20px;
+    }
+
+    .portrait {
+      width: 92px;
+      height: 92px;
+      border-radius: 22px;
+      border: 1px solid var(--accent-soft);
+      background:
+        linear-gradient(135deg, rgba(217, 179, 108, 0.16), rgba(255, 255, 255, 0.04)),
+        rgba(9, 11, 16, 0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-family: "Times New Roman", serif;
+      font-size: 34px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .name {
+      font-size: clamp(28px, 7vw, 38px);
+      line-height: 1.08;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .role {
+      color: var(--text-soft);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: rgba(15, 20, 31, 0.72);
+    }
+
+    .item-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .item-value {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(15, 20, 31, 0.72);
+      margin-bottom: 18px;
+    }
+
+    .status-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      font-weight: 700;
+    }
+
+    .status-badge {
+      background: rgba(217, 179, 108, 0.12);
+      border: 1px solid var(--accent-soft);
+      color: var(--accent);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(42, 49, 64, 0.9);
+      padding-top: 14px;
+      color: var(--text-soft);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .serial {
+      margin-top: 10px;
+      color: var(--text);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    @media (min-width: 640px) {
+      .content {
+        padding: 24px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section class="topbar">
+      <div class="authority">Identitas Resmi<br />Dewata Kayangan</div>
+      <div class="seal">Akses Istana</div>
+    </section>
+
+    <section class="content">
+      <div class="portrait">AB</div>
+
+      <p class="label">Pemegang Identitas</p>
+      <h1 class="name">Arif Budianto</h1>
+      <p class="role">Dewa Pedang Resmi Kayangan</p>
+
+      <section class="grid">
+        <article class="item">
+          <p class="item-title">Divisi</p>
+          <p class="item-value">Penjaga Senjata Suci</p>
+        </article>
+        <article class="item">
+          <p class="item-title">Wilayah</p>
+          <p class="item-value">Istana Kayangan</p>
+        </article>
+        <article class="item">
+          <p class="item-title">Hak Akses</p>
+          <p class="item-value">Majelis Utama</p>
+        </article>
+        <article class="item">
+          <p class="item-title">Kedudukan</p>
+          <p class="item-value">Dewa Aktif</p>
+        </article>
+      </section>
+
+      <section class="status-row">
+        <span class="status-label">Status Identitas</span>
+        <span class="status-badge">Terverifikasi</span>
+      </section>
+
+      <footer class="footer">
+        Kartu ini merupakan penanda resmi kehadiran dan kedudukan di lingkungan Kayangan.
+        <p class="serial">ID-DEWA-ARB-001</p>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
