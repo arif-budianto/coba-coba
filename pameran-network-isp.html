@@ -171,9 +171,11 @@
       border: 1px solid var(--line-2);
       color: var(--text-soft);
       font-size: 13px;
-      cursor: default;
+      cursor: pointer;
       transition: 0.18s ease;
       background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
     }
 
     .cat.active,
@@ -208,7 +210,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, opacity 0.3s ease;
       position: relative;
     }
 
@@ -322,44 +324,49 @@
 
     /* --- CTA --- */
     .cta {
-      padding: 0 0 44px;
+      margin-top: 26px;
+      padding: 0 0 48px;
     }
 
     .cta-box {
-      border-radius: 24px;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 28px;
       background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(110, 231, 183, 0.06));
       border: 1px solid var(--line);
-      padding: 26px 20px;
+      padding: 28px 20px;
       text-align: center;
     }
 
     .cta-box h2 {
       font-family: "Times New Roman", Georgia, serif;
       font-size: clamp(24px, 5vw, 40px);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .cta-box p {
       color: var(--text-soft);
-      font-size: 14px;
+      font-size: 15px;
+      line-height: 1.85;
       max-width: 44ch;
-      margin: 0 auto 16px;
+      margin: 0 auto 24px;
     }
 
     .cta-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
+      min-height: 52px;
+      padding: 0 28px;
       border-radius: 999px;
       background: var(--accent);
       color: #07120e;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       text-decoration: none;
       border: 1px solid transparent;
       transition: 0.2s ease;
+      box-shadow: 0 8px 24px rgba(52, 211, 153, 0.25);
     }
 
     .cta-btn:hover { opacity: 0.92; }
@@ -405,7 +412,14 @@
         gap: 18px;
       }
 
-      .cta-box { padding: 34px; }
+      .cta {
+        margin-top: 34px;
+        padding: 0 0 56px;
+      }
+
+      .cta-box { padding: 36px 32px; }
+
+      .cta-box p { margin-bottom: 28px; }
     }
   </style>
 </head>
@@ -454,12 +468,12 @@
 
     <section class="wrap">
       <div class="cats">
-        <span class="cat active">Semua</span>
-        <span class="cat">Router</span>
-        <span class="cat">Switch</span>
-        <span class="cat">OLT</span>
-        <span class="cat">OTB / ODC</span>
-        <span class="cat">Aksesoris FO</span>
+        <button class="cat active" type="button" data-filter="all">Semua</button>
+        <button class="cat" type="button" data-filter="router">Router</button>
+        <button class="cat" type="button" data-filter="switch">Switch</button>
+        <button class="cat" type="button" data-filter="olt">OLT</button>
+        <button class="cat" type="button" data-filter="otb-odc">OTB / ODC</button>
+        <button class="cat" type="button" data-filter="aksesoris-fo">Aksesoris FO</button>
       </div>
     </section>
 
@@ -467,7 +481,7 @@
       <h2 class="products-title">Katalog Produk</h2>
       <div class="grid">
 
-        <article class="card">
+        <article class="card" data-category="router">
           <div class="card-head">
             <h3>MikroTik CCR1036-8G-2S+EM</h3>
             <span class="card-tag">Router</span>
@@ -487,7 +501,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="router">
           <div class="card-head">
             <h3>MikroTik CCR2116-12G-4S+</h3>
             <span class="card-tag">Router</span>
@@ -507,7 +521,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="router">
           <div class="card-head">
             <h3>Cisco ISR 4331/K9</h3>
             <span class="card-tag">Router</span>
@@ -527,7 +541,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="switch">
           <div class="card-head">
             <h3>Cisco Catalyst C9300-24T-A</h3>
             <span class="card-tag">Switch</span>
@@ -547,7 +561,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="switch">
           <div class="card-head">
             <h3>MikroTik CRS326-24G-2S+RM</h3>
             <span class="card-tag">Switch</span>
@@ -567,7 +581,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="switch">
           <div class="card-head">
             <h3>Cisco Catalyst C9200L-24P-4G-A</h3>
             <span class="card-tag">Switch</span>
@@ -587,7 +601,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="olt">
           <div class="card-head">
             <h3>ZTE ZXA10 C600 OLT</h3>
             <span class="card-tag">OLT</span>
@@ -607,7 +621,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="olt">
           <div class="card-head">
             <h3>Huawei MA5800-X7 OLT</h3>
             <span class="card-tag">OLT</span>
@@ -627,7 +641,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="olt">
           <div class="card-head">
             <h3>FiberHome AN6000-17 OLT</h3>
             <span class="card-tag">OLT</span>
@@ -647,7 +661,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="otb-odc">
           <div class="card-head">
             <h3>OTB 96 Core Rack Mount</h3>
             <span class="card-tag">OTB</span>
@@ -667,7 +681,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="otb-odc">
           <div class="card-head">
             <h3>OTB 144 Core Wall Mount</h3>
             <span class="card-tag">OTB</span>
@@ -687,7 +701,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="otb-odc">
           <div class="card-head">
             <h3>ODC 288 Core Dome Type</h3>
             <span class="card-tag">ODC</span>
@@ -707,7 +721,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="otb-odc">
           <div class="card-head">
             <h3>ODC 144 Core Vertical Pole</h3>
             <span class="card-tag">ODC</span>
@@ -727,7 +741,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="aksesoris-fo">
           <div class="card-head">
             <h3>OTDR EXFO FTB-1v2 Pro</h3>
             <span class="card-tag">Aksesoris FO</span>
@@ -747,7 +761,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="aksesoris-fo">
           <div class="card-head">
             <h3>Fusion Splicer Fujikura 70S+</h3>
             <span class="card-tag">Aksesoris FO</span>
@@ -767,7 +781,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="aksesoris-fo">
           <div class="card-head">
             <h3>GPON ONT ZTE F660</h3>
             <span class="card-tag">Aksesoris FO</span>
@@ -787,7 +801,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="aksesoris-fo">
           <div class="card-head">
             <h3>Media Converter 10G SFP+</h3>
             <span class="card-tag">Aksesoris FO</span>
@@ -807,7 +821,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="aksesoris-fo">
           <div class="card-head">
             <h3>Fibre Optic Patch Cord LC/UPC 3M</h3>
             <span class="card-tag">Aksesoris FO</span>
@@ -830,11 +844,13 @@
       </div>
     </section>
 
-    <section class="wrap cta" id="kontak">
+    <section class="cta" id="kontak">
+      <div class="wrap">
       <div class="cta-box">
         <h2>Butuh Konsultasi Jaringan?</h2>
         <p>Tim kami siap membantu Abang memilih peralatan yang tepat sesuai kebutuhan ISP dan budget.</p>
         <a class="cta-btn" href="#">Hubungi Tim Sales</a>
+      </div>
       </div>
     </section>
   </main>
@@ -843,5 +859,34 @@
     <span><strong>NetExpo</strong> &mdash; Pameran Network ISP 2026</span>
     <span>Harga dapat berubah sewaktu-waktu. Hubungi sales untuk penawaran terbaru.</span>
   </footer>
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.cat');
+      var cards = document.querySelectorAll('.card[data-category]');
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var filter = btn.getAttribute('data-filter');
+
+          buttons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          cards.forEach(function (card) {
+            var cat = card.getAttribute('data-category');
+            var show = filter === 'all' || cat === filter;
+            if (show) {
+              card.style.display = 'flex';
+              card.style.opacity = '0';
+              card.offsetHeight;
+              card.style.transition = 'opacity 0.3s ease';
+              card.style.opacity = '1';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
