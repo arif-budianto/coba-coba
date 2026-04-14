@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pameran Network ISP &mdash; Alat Jaringan Profesional</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --bg-2: #10141c;
+      --surface: #161c28;
+      --surface-2: #1a2233;
+      --text: #eaecf4;
+      --text-soft: #8b93a8;
+      --accent: #34d399;
+      --accent-2: #6ee7b7;
+      --line: rgba(52, 211, 153, 0.18);
+      --line-2: #1e2738;
+      --shadow: 0 24px 56px rgba(0, 0, 0, 0.38);
+      --tag: rgba(52, 211, 153, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 0% -5%, rgba(52, 211, 153, 0.07), transparent 36%),
+        radial-gradient(circle at 100% 110%, rgba(110, 231, 183, 0.05), transparent 34%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .wrap { width: min(1140px, 100%); margin: 0 auto; padding: 0 18px; }
+
+    /* --- HEADER --- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 14, 20, 0.82);
+      border-bottom: 1px solid var(--line-2);
+    }
+
+    .header-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .nav { display: none; gap: 20px; }
+    .nav a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 14px;
+      transition: color 0.18s ease;
+    }
+    .nav a:hover { color: var(--text); }
+
+    /* --- HERO --- */
+    .hero { padding: 20px 0 36px; }
+
+    .hero-card {
+      border: 1px solid var(--line-2);
+      border-radius: 28px;
+      background: linear-gradient(180deg, var(--surface-2), var(--surface));
+      box-shadow: var(--shadow);
+      padding: 26px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      top: -110px;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.06);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 14px;
+      background: var(--tag);
+    }
+
+    .hero-title {
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: clamp(32px, 7vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      margin-bottom: 10px;
+      text-wrap: balance;
+    }
+
+    .hero-sub {
+      color: var(--text-soft);
+      font-size: clamp(14px, 2.8vw, 17px);
+      max-width: 52ch;
+      line-height: 1.72;
+      margin-bottom: 18px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      border-top: 1px solid var(--line-2);
+      padding-top: 14px;
+    }
+
+    .hero-stats div { min-width: 0; }
+
+    .hero-stats strong {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .hero-stats span {
+      display: block;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    /* --- CATEGORIES --- */
+    .cats {
+      padding: 14px 0 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cat {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line-2);
+      color: var(--text-soft);
+      font-size: 13px;
+      cursor: default;
+      transition: 0.18s ease;
+      background: transparent;
+    }
+
+    .cat.active,
+    .cat:hover {
+      border-color: rgba(52, 211, 153, 0.4);
+      color: var(--accent);
+      background: var(--tag);
+    }
+
+    /* --- PRODUCT GRID --- */
+    .products {
+      padding: 18px 0 48px;
+    }
+
+    .products-title {
+      font-size: clamp(22px, 5vw, 34px);
+      font-family: "Times New Roman", Georgia, serif;
+      margin-bottom: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line-2);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: rgba(52, 211, 153, 0.32);
+    }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-head h3 {
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .card-tag {
+      display: inline-block;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      background: var(--tag);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge-cert {
+      display: inline-block;
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      color: #fbbf24;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      background: rgba(251, 191, 36, 0.08);
+    }
+
+    .badge-promo {
+      display: inline-block;
+      border: 1px solid rgba(248, 113, 113, 0.35);
+      color: #f87171;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      background: rgba(248, 113, 113, 0.08);
+    }
+
+    .card-specs {
+      color: var(--text-soft);
+      font-size: 13px;
+      line-height: 1.72;
+    }
+
+    .card-bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid var(--line-2);
+      padding-top: 12px;
+    }
+
+    .price-block {}
+
+    .price-old {
+      color: var(--text-soft);
+      font-size: 13px;
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .price {
+      color: var(--accent-2);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .price-note {
+      color: var(--text-soft);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    .stock {
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    /* --- CTA --- */
+    .cta {
+      padding: 0 0 44px;
+    }
+
+    .cta-box {
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(110, 231, 183, 0.06));
+      border: 1px solid var(--line);
+      padding: 26px 20px;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: clamp(24px, 5vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .cta-box p {
+      color: var(--text-soft);
+      font-size: 14px;
+      max-width: 44ch;
+      margin: 0 auto 16px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #07120e;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .cta-btn:hover { opacity: 0.92; }
+
+    /* --- FOOTER --- */
+    .footer {
+      border-top: 1px solid var(--line-2);
+      padding: 16px 0 24px;
+      color: var(--text-soft);
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer strong {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    @media (min-width: 640px) {
+      .wrap { padding: 0 22px; }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 880px) {
+      .nav { display: inline-flex; }
+
+      .hero { padding: 30px 0 42px; }
+      .hero-card { padding: 36px 32px; }
+
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .cta-box { padding: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap header-inner">
+      <div class="brand">Net<em>Expo</em></div>
+      <nav class="nav">
+        <a href="#produk">Produk</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <article class="hero-card">
+          <p class="hero-badge">Pameran Network ISP 2026</p>
+          <h1 class="hero-title">Peralatan Jaringan Kelas Profesional</h1>
+          <p class="hero-sub">
+            Katalog lengkap alat jaringan ISP: router, switch, OLT, OTB, ODC, dan aksesoris fibre optik.
+            Semua produk bersertifikat dan siap untuk jaringan skala enterprise.
+          </p>
+          <div class="hero-stats">
+            <div>
+              <strong>Total Produk</strong>
+              <span>18 Item</span>
+            </div>
+            <div>
+              <strong>Kategori</strong>
+              <span>6 Grup</span>
+            </div>
+            <div>
+              <strong>Harga</strong>
+              <span>12 Jt &ndash; 85 Jt</span>
+            </div>
+            <div>
+              <strong>Garansi</strong>
+              <span>Resmi</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="cats">
+        <span class="cat active">Semua</span>
+        <span class="cat">Router</span>
+        <span class="cat">Switch</span>
+        <span class="cat">OLT</span>
+        <span class="cat">OTB / ODC</span>
+        <span class="cat">Aksesoris FO</span>
+      </div>
+    </section>
+
+    <section class="wrap products" id="produk">
+      <h2 class="products-title">Katalog Produk</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="card-head">
+            <h3>MikroTik CCR1036-8G-2S+EM</h3>
+            <span class="card-tag">Router</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 12%</span>
+          </div>
+          <p class="card-specs">36 core CPU, 16 GB RAM, 8x Gigabit Ethernet, 2x SFP+ 10 Gbps, rackmount 1U.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 32.400.000</div>
+              <div class="price">Rp 28.500.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>MikroTik CCR2116-12G-4S+</h3>
+            <span class="card-tag">Router</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 15%</span>
+          </div>
+          <p class="card-specs">16 core ARM, 4 GB DDR4, 12x Gigabit, 4x SFP+ 10 Gbps, dual PSU.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 26.800.000</div>
+              <div class="price">Rp 22.750.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Cisco ISR 4331/K9</h3>
+            <span class="card-tag">Router</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 18%</span>
+          </div>
+          <p class="card-specs">3x GE ports, 2x NIM slots, 1x SM slot, throughput up to 2 Gbps, IP Base license.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 46.300.000</div>
+              <div class="price">Rp 38.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Pre-order</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Cisco Catalyst C9300-24T-A</h3>
+            <span class="card-tag">Switch</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 10%</span>
+          </div>
+          <p class="card-specs">24x 1G RJ45, Network Essentials, StackWise-480, modular uplink.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 57.800.000</div>
+              <div class="price">Rp 52.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>MikroTik CRS326-24G-2S+RM</h3>
+            <span class="card-tag">Switch</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 14%</span>
+          </div>
+          <p class="card-specs">24x Gigabit RJ45, 2x SFP+ 10 Gbps, SwOS / RouterOS, rackmount 1U.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 14.900.000</div>
+              <div class="price">Rp 12.800.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Cisco Catalyst C9200L-24P-4G-A</h3>
+            <span class="card-tag">Switch</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 17%</span>
+          </div>
+          <p class="card-specs">24x PoE+ GE, 4x 1G SFP uplink, Essentials, stackable.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 54.800.000</div>
+              <div class="price">Rp 45.500.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>ZTE ZXA10 C600 OLT</h3>
+            <span class="card-tag">OLT</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 11%</span>
+          </div>
+          <p class="card-specs">16x PON port, GPON, uplink 10 GE, support 1024 ONT, rackmount 2U.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 39.300.000</div>
+              <div class="price">Rp 35.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Huawei MA5800-X7 OLT</h3>
+            <span class="card-tag">OLT</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 20%</span>
+          </div>
+          <p class="card-specs">7 slot service board, GPON/XG-P1 dual-mode, uplink 10 GE, support 2048 ONT.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 106.200.000</div>
+              <div class="price">Rp 85.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Pre-order</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>FiberHome AN6000-17 OLT</h3>
+            <span class="card-tag">OLT</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 16%</span>
+          </div>
+          <p class="card-specs">16x GPON port, dual 10 GE uplink, hot-swap fan, rackmount 2U.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 50.000.000</div>
+              <div class="price">Rp 42.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>OTB 96 Core Rack Mount</h3>
+            <span class="card-tag">OTB</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 13%</span>
+          </div>
+          <p class="card-specs">96 port splice, rackmount 1U, tray slide-out, kompatibel SC/LC/FC.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 16.300.000</div>
+              <div class="price">Rp 14.200.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>OTB 144 Core Wall Mount</h3>
+            <span class="card-tag">OTB</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 19%</span>
+          </div>
+          <p class="card-specs">144 port splice, wall mount, IP65, tray modular, include pigtail tray.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 22.800.000</div>
+              <div class="price">Rp 18.500.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>ODC 288 Core Dome Type</h3>
+            <span class="card-tag">ODC</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 12%</span>
+          </div>
+          <p class="card-specs">288 port, outdoor dome, IP67, stainless steel, modular tray system.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 27.300.000</div>
+              <div class="price">Rp 24.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>ODC 144 Core Vertical Pole</h3>
+            <span class="card-tag">ODC</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 18%</span>
+          </div>
+          <p class="card-specs">144 port, pole mount, IP67, ABS+PC body, include grounding kit.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 20.500.000</div>
+              <div class="price">Rp 16.800.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>OTDR EXFO FTB-1v2 Pro</h3>
+            <span class="card-tag">Aksesoris FO</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 15%</span>
+          </div>
+          <p class="card-specs">Singlemode & multimode, dynamic range 42 dB, 7 inch touchscreen, 8 hour battery.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 91.800.000</div>
+              <div class="price">Rp 78.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Pre-order</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Fusion Splicer Fujikura 70S+</h3>
+            <span class="card-tag">Aksesoris FO</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 10%</span>
+          </div>
+          <p class="card-specs">Single fiber, splice time 7 detik, tube heater 14 detik, IP55, drop resistant.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 72.200.000</div>
+              <div class="price">Rp 65.000.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>GPON ONT ZTE F660</h3>
+            <span class="card-tag">Aksesoris FO</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 14%</span>
+          </div>
+          <p class="card-specs">4x GE LAN, 1x POTS, dual-band Wi-Fi 5, USB 2.0, CATV RF output.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 15.700.000</div>
+              <div class="price">Rp 13.500.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Media Converter 10G SFP+</h3>
+            <span class="card-tag">Aksesoris FO</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 17%</span>
+          </div>
+          <p class="card-specs">1x 10G SFP+ slot, 1x 10GE RJ45, hot-pluggable, dual fiber, distance 10–80 km.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 19.000.000</div>
+              <div class="price">Rp 15.800.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Fibre Optic Patch Cord LC/UPC 3M</h3>
+            <span class="card-tag">Aksesoris FO</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-cert">Bersertifikat</span>
+            <span class="badge-promo">Promo 11%</span>
+          </div>
+          <p class="card-specs">Singlemode OS2, duplex LC/UPC, LSZH jacket, 3 meter, insertion loss &le; 0.2 dB.</p>
+          <div class="card-bottom">
+            <div class="price-block">
+              <div class="price-old">Rp 14.000.000</div>
+              <div class="price">Rp 12.500.000</div>
+              <div class="price-note">Harga promo</div>
+            </div>
+            <span class="stock">Ready</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="wrap cta" id="kontak">
+      <div class="cta-box">
+        <h2>Butuh Konsultasi Jaringan?</h2>
+        <p>Tim kami siap membantu Abang memilih peralatan yang tepat sesuai kebutuhan ISP dan budget.</p>
+        <a class="cta-btn" href="#">Hubungi Tim Sales</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <span><strong>NetExpo</strong> &mdash; Pameran Network ISP 2026</span>
+    <span>Harga dapat berubah sewaktu-waktu. Hubungi sales untuk penawaran terbaru.</span>
+  </footer>
+</body>
+</html>
