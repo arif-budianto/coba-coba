@@ -196,11 +196,11 @@
       font-size: clamp(22px, 5vw, 34px);
       font-family: "Times New Roman", Georgia, serif;
       margin-bottom: 18px;
-      padding-left: var(--card-pad-mobile);
+      padding-left: 0;
     }
 
     .products-inner {
-      padding-inline: 0;
+      padding-inline: var(--card-pad-mobile);
     }
 
     .grid {
@@ -330,7 +330,7 @@
     /* --- CTA --- */
     .cta {
       margin-top: 26px;
-      padding: 0 0 48px;
+      padding: 0 0 64px;
     }
 
     .cta-box {
@@ -379,12 +379,16 @@
     /* --- FOOTER --- */
     .footer {
       border-top: 1px solid var(--line-2);
-      padding: 16px 0 24px;
+      margin-top: 0;
+      padding: 18px 0 28px;
       color: var(--text-soft);
       font-size: 13px;
+    }
+
+    .footer .wrap {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
     .footer strong {
@@ -431,7 +435,7 @@
 
       .cta {
         margin-top: 34px;
-        padding: 0 0 56px;
+        padding: 0 0 72px;
       }
 
       .cta-box { padding: 36px 32px; }
@@ -994,9 +998,11 @@
     </section>
   </main>
 
-  <footer class="footer wrap">
-    <span><strong>NetExpo</strong> &mdash; Pameran Network ISP 2026</span>
-    <span>Harga dapat berubah sewaktu-waktu. Hubungi sales untuk penawaran terbaru.</span>
+  <footer class="footer">
+    <div class="wrap">
+      <span><strong>NetExpo</strong> &mdash; Pameran Network ISP 2026</span>
+      <span>Harga dapat berubah sewaktu-waktu. Hubungi sales untuk penawaran terbaru.</span>
+    </div>
   </footer>
   <script>
     (function () {
