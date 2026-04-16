@@ -1,6 +1,6 @@
 # Tutorial Berlangganan Jockie Premium Paket Platinum
 
-> Panduan detail untuk membeli dan mengaktifkan Jockie Music Premium tier **Platinum Supporter** via Patreon.
+> Panduan detail untuk membeli dan mengaktifkan Jockie Music Premium tier **Platinum Supporter** melalui Patreon.
 
 ---
 
@@ -22,13 +22,13 @@ Benefit yang terlihat publik di halaman tier tersebut:
 
 ## Sebelum Mulai
 
-Siapkan dulu:
+Sebelum berlangganan, siapkan hal berikut:
 
-- Akun **Discord** yang memang akan dipakai untuk mengelola server.
+- Akun **Discord** yang akan dipakai untuk mengelola server.
 - Akun **Patreon**.
 - Metode pembayaran aktif di Patreon.
-- Server Discord tempat Jockie Music dipakai.
-- Pastikan Jockie Music memang sudah ada di server, karena langganan Platinum memberi benefit premium/boost, bukan menggantikan proses invite bot.
+- Server Discord tempat Jockie Music digunakan.
+- Pastikan Jockie Music sudah ada di server, karena langganan Platinum memberi benefit premium/boost, bukan menggantikan proses invite bot.
 
 ---
 
@@ -36,7 +36,7 @@ Siapkan dulu:
 
 1. Buka halaman Patreon Jockie: [https://www.patreon.com/Jockie/join](https://www.patreon.com/Jockie/join)
 2. Cari tier **Platinum Supporter**.
-3. Pastikan yang dipilih benar-benar tier **Platinum Supporter — US$10 / month**.
+3. Pastikan tier yang dipilih benar-benar **Platinum Supporter — US$10 / month**.
 4. Klik tombol **Join**.
 
 Catatan:
@@ -48,22 +48,22 @@ Catatan:
 
 ## Langkah 2 — Selesaikan Checkout Patreon
 
-1. Login ke akun Patreon Abang.
+1. Login ke akun Patreon.
 2. Di halaman checkout, pilih metode pembayaran.
-3. Cek ringkasan pembayaran sebelum konfirmasi.
+3. Periksa ringkasan pembayaran sebelum konfirmasi.
 4. Selesaikan pembayaran sampai membership aktif.
 
 Hal penting:
 
 - Jadwal penagihan mengikuti sistem billing Patreon yang dipakai kreator.
-- Jika pembayaran gagal, Patreon menyarankan cek dana, masa berlaku kartu, dan izin transaksi online/berulang.
+- Jika pembayaran gagal, cek dana, masa berlaku kartu, dan izin transaksi online/berulang.
 - Jika perlu, coba metode pembayaran lain.
 
 ---
 
 ## Langkah 3 — Hubungkan Discord ke Patreon
 
-Agar benefit yang terkait Discord bisa ikut terbaca, sambungkan akun Discord ke Patreon:
+Agar benefit yang terkait Discord bisa terbaca dengan benar, sambungkan akun Discord ke Patreon:
 
 1. Login ke Patreon.
 2. Buka **Settings**.
@@ -73,7 +73,7 @@ Agar benefit yang terkait Discord bisa ikut terbaca, sambungkan akun Discord ke 
 6. Klik **Authorize**.
 7. Refresh halaman bila perlu.
 
-Kalau pop-up login Discord tidak muncul:
+Jika pop-up login Discord tidak muncul:
 
 - Matikan ad blocker atau extension yang memblokir pop-up.
 - Coba ulangi proses connect.
@@ -86,9 +86,9 @@ Setelah pembayaran sukses:
 
 1. Buka halaman membership Jockie di Patreon.
 2. Pastikan tier yang aktif memang **Platinum Supporter**.
-3. Kalau Patreon menampilkan detail benefit, cek bahwa tier tersebut sesuai Platinum.
+3. Jika Patreon menampilkan detail benefit, cek bahwa tier tersebut sesuai Platinum.
 
-Kalau benefit Discord atau akses supporter belum muncul, biasanya yang perlu dicek dulu:
+Jika benefit Discord atau akses supporter belum muncul, biasanya yang perlu dicek lebih dulu:
 
 - Akun Discord yang terhubung ke Patreon sudah benar.
 - Membership aktif di tier yang benar.
@@ -113,13 +113,13 @@ Catatan penting:
 
 - Benefit premium server **bergantung pada jumlah boost yang diberikan ke server**.
 - Halaman Patreon Jockie menyebut untuk cek detail lewat command **`perks`**.
-- Jadi setelah langganan aktif, cek info benefit/aktivasi dari sisi bot dengan command `perks` sesuai prefix bot/server Abang.
+- Setelah langganan aktif, cek info benefit/aktivasi dari sisi bot dengan command `perks` sesuai prefix bot/server masing-masing.
 
 ---
 
 ## Langkah 6 — Verifikasi Fitur Premium di Server Discord
 
-Sesudah boost diterapkan, lakukan pengecekan sederhana di server:
+Setelah boost diterapkan, lakukan pengecekan sederhana di server:
 
 1. Masuk ke server Discord yang memakai Jockie.
 2. Jalankan command **`perks`** untuk melihat benefit premium yang aktif.
@@ -127,7 +127,7 @@ Sesudah boost diterapkan, lakukan pengecekan sederhana di server:
    - Cek apakah **filters** sudah tersedia.
    - Cek apakah mode **24/7** sudah bisa dipakai setelah server menerima minimal 5 boost.
    - Cek apakah server mendapat **additional premium bots** setelah 10 boost aktif.
-4. Bila perlu, cek dashboard/statistik Jockie bila aksesnya sudah terbuka.
+4. Jika perlu, cek dashboard atau statistik Jockie bila aksesnya sudah tersedia.
 
 ---
 
@@ -135,7 +135,7 @@ Sesudah boost diterapkan, lakukan pengecekan sederhana di server:
 
 ### 1) Sudah bayar tapi benefit belum muncul
 
-Langkah aman yang bisa dicoba:
+Langkah yang bisa dicoba:
 
 1. Pastikan tier aktif adalah **Platinum Supporter**.
 2. Pastikan akun Discord yang tersambung ke Patreon adalah akun yang benar.
@@ -149,7 +149,7 @@ Cek:
 
 - Discord sudah tersambung ke Patreon.
 - Membership Platinum masih aktif.
-- Server/role benefit memang disediakan lewat integrasi Discord Jockie/Patreon.
+- Server atau role benefit memang disediakan lewat integrasi Discord Jockie/Patreon.
 
 ### 3) Pembayaran Patreon gagal
 
@@ -162,10 +162,10 @@ Cek hal berikut:
 
 ---
 
-## Hal yang Perlu Abang Perhatikan
+## Hal yang Perlu Diperhatikan
 
 - Paket Platinum yang dimaksud di sumber resmi adalah **Platinum Supporter**, bukan nama paket lain.
-- Harga yang tampil publik saat saya cek adalah **US$10 per bulan** pada **16 April 2026**.
+- Harga yang tampil publik saat dicek adalah **US$10 per bulan** pada **16 April 2026**.
 - Total biaya akhir bisa berubah karena **pajak**, **kurs**, atau kebijakan Patreon/Jockie.
 - Detail teknis penempatan boost di server tidak dijelaskan lengkap di halaman publik Patreon; karena itu langkah verifikasi paling aman adalah memakai command **`perks`** dan halaman resmi Jockie setelah membership aktif.
 
